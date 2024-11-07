@@ -17,6 +17,14 @@ class AppWidget {
         fontWeight: FontWeight.bold);
   }
 
+  static TextStyle headLineText2Style(){
+    return const TextStyle(
+        color: Color.fromARGB(255, 255, 255, 255),
+        fontSize: 30.0,
+        fontFamily: 'Poppins',
+        fontWeight: FontWeight.bold);
+  }
+
   static TextStyle lightTextStyle(){
     return const TextStyle(
         color: Colors.black38,
@@ -29,6 +37,22 @@ class AppWidget {
     return const TextStyle(
         color: Colors.black,
         fontSize: 18.0,
+        fontFamily: 'Poppins',
+        fontWeight: FontWeight.w500);
+  }
+
+  static TextStyle buttonBoldTextStyle(){
+    return const TextStyle(
+        color: Colors.white,
+        fontSize: 16.0,
+        fontFamily: 'Poppins',
+        fontWeight: FontWeight.w500);
+  }
+
+  static TextStyle semiBoldText2Style(){
+    return const TextStyle(
+        color: Colors.black,
+        fontSize: 16.0,
         fontFamily: 'Poppins',
         fontWeight: FontWeight.w500);
   }

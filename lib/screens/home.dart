@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:food_app/screens/product_details.dart';
 import 'package:food_app/widget/widget_support.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -17,9 +18,9 @@ final List<Map<String, String>> imagePath = [
 ];
 
 final List<Map<String, String>> specialFoodItems = [
-  {'name': 'Salad2', 'path': 'assets/images/salad2.png'},
-  {'name': 'Salad3', 'path': 'assets/images/salad3.png'},
-  {'name': 'Salad4', 'path': 'assets/images/salad4.png'},
+  {'name': 'Salad2', 'path': 'assets/images/salad2.png','price':'25'},
+  {'name': 'Salad3', 'path': 'assets/images/salad3.png','price':'29'},
+  {'name': 'Salad4', 'path': 'assets/images/salad4.png','price':'32'},
 ];
 
 String selectedCategory = 'Pizza';
@@ -105,41 +106,48 @@ class _HomeScreenState extends State<HomeScreen> {
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: specialFoodItems.map((food) {
-                  return Container(
-                    margin: const EdgeInsets.only(
-                        right: 10.0, bottom: 10.0, top: 10.0),
-                    child: Material(
-                      elevation: 8.0,
-                      borderRadius: BorderRadius.circular(15.0),
-                      child: Container(
-                        margin: const EdgeInsets.symmetric(horizontal: 8.0),
-                        padding: const EdgeInsets.all(15),
-                        child: Column(
-                          children: [
-                            Image.asset(
-                              food['path'] ??
-                                  'assets/images/salad2.png', // Using the image path from `food`
-                              height: 150.0,
-                              width: 150.0,
-                              fit: BoxFit.cover,
-                            ),
-                            Text(
-                              food['name'] ??
-                                  'Veggie Taco Hash', // Using the name from `food`
-                              style: AppWidget.semiBoldTextStyle(),
-                            ),
-                            const SizedBox(height: 2.0),
-                            Text(
-                              food['description'] ??
-                                  'Fresh and Healthy', // Using the description from `food`
-                              style: AppWidget.lightTextStyle(),
-                            ),
-                            const SizedBox(height: 2.5),
-                            Text(
-                              '\$${food['price'] ?? '25'}', // Using the price from `food`
-                              style: AppWidget.semiBoldTextStyle(),
-                            )
-                          ],
+                  return GestureDetector(
+                    onTap: () {
+                       Navigator.push(context, MaterialPageRoute(builder: (context) {
+                        return ProductDetails();
+                      },));
+                    },
+                    child: Container(
+                      margin: const EdgeInsets.only(
+                          left: 5.0, bottom: 10.0, top: 10.0,right: 5.0),
+                      child: Material(
+                        elevation: 8.0,
+                        borderRadius: BorderRadius.circular(15.0),
+                        child: Container(
+                          margin: const EdgeInsets.symmetric(horizontal: 8.0),
+                          padding: const EdgeInsets.all(15),
+                          child: Column(
+                            children: [
+                              Image.asset(
+                                food['path'] ??
+                                    'assets/images/salad2.png', // Using the image path from `food`
+                                height: 150.0,
+                                width: 150.0,
+                                fit: BoxFit.cover,
+                              ),
+                              Text(
+                                food['name'] ??
+                                    'Food Name', // Using the name from `food`
+                                style: AppWidget.semiBoldTextStyle(),
+                              ),
+                              const SizedBox(height: 2.0),
+                              Text(
+                                food['description'] ??
+                                    'Description',
+                                style: AppWidget.lightTextStyle(),
+                              ),
+                              const SizedBox(height: 2.5),
+                              Text(
+                                '\$${food['price'] ?? 'Price'}', 
+                                style: AppWidget.semiBoldTextStyle(),
+                              )
+                            ],
+                          ),
                         ),
                       ),
                     ),

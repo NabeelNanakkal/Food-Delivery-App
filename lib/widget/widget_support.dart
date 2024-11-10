@@ -49,6 +49,14 @@ class AppWidget {
         fontWeight: FontWeight.w500);
   }
 
+   static TextStyle buttonBoldText2Style(){
+    return const TextStyle(
+        color: Colors.white,
+        fontSize: 20.0,
+        fontFamily: 'Poppins',
+        fontWeight: FontWeight.w500);
+  }
+
   static TextStyle semiBoldText2Style(){
     return const TextStyle(
         color: Colors.black,

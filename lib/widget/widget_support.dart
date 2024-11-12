@@ -25,6 +25,14 @@ class AppWidget {
         fontWeight: FontWeight.bold);
   }
 
+   static TextStyle headLineText3Style(){
+    return const TextStyle(
+        color: Colors.black,
+        fontSize: 22.0,
+        fontFamily: 'Poppins',
+        fontWeight: FontWeight.bold);
+  }
+
   static TextStyle lightTextStyle(){
     return const TextStyle(
         color: Colors.black38,

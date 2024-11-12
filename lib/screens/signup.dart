@@ -2,7 +2,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 // import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:food_app/screens/login.dart';
+import 'package:food_app/services/service.dart';
+import 'package:food_app/services/shared_pref.dart';
+import 'package:food_app/widget/bottom_nav.dart';
 import 'package:food_app/widget/widget_support.dart';
+import 'package:random_string/random_string.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({super.key});
@@ -29,9 +33,25 @@ class _SignUpState extends State<SignUp> {
             .createUserWithEmailAndPassword(email: email, password: password);
         ScaffoldMessenger.of(context).showSnackBar(
             (SnackBar(content: Text('User Registered Successfully'))));
+            String Id = randomAlphaNumeric(10);
+            Map<String, dynamic> addUserInfo = {
+              'name':nameController.text,
+              'email':emailController.text,
+              'wallet':'0',
+              'Id':Id
+            };
+
+            await DatabaseMethods().addUserDetails(addUserInfo, Id);
+            await SharedPreferenceHelper().saveUserId(Id);
+            await SharedPreferenceHelper().saveUserName(nameController.text);
+            await SharedPreferenceHelper().saveUserEmail(emailController.text);
+            await SharedPreferenceHelper().saveUserWallet('0');
+
+
+
         Navigator.of(context).pushReplacement(MaterialPageRoute(
           builder: (context) {
-            return const Login();
+            return const BottomNavigation();
           },
         ));
       } on FirebaseAuthException catch (err) {

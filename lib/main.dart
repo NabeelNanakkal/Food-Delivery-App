@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
+import 'package:food_app/admin/admin_login.dart';
 // import 'package:food_app/screens/home.dart';
 // import 'package:food_app/screens/login.dart';
 import 'package:food_app/screens/onboard.dart';
@@ -28,7 +29,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const Onboard(),
+      home: const AdminLogin(),
     );
   }
 }

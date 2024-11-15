@@ -72,4 +72,12 @@ class AppWidget {
         fontFamily: 'Poppins',
         fontWeight: FontWeight.w500);
   }
+
+   static TextStyle lightText2Style(){
+    return const TextStyle(
+        color: Colors.black54,
+        fontSize: 15.0,
+        fontFamily: 'Poppins',
+        fontWeight: FontWeight.bold);
+  }
 }

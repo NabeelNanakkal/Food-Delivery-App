@@ -37,4 +37,8 @@ class DatabaseMethods {
         .collection('cart')
         .add(userCartInfoMap);
   }
+
+   Future<Stream<QuerySnapshot>> getProductCart(String id)async{
+    return await FirebaseFirestore.instance.collection('users').doc(id).collection('cart').snapshots();
+  }
 }

@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:food_app/screens/login.dart';
+import 'package:food_app/services/auth.dart';
 import 'package:food_app/services/service.dart';
 import 'package:food_app/services/shared_pref.dart';
 import 'package:food_app/widget/widget_support.dart';
@@ -286,30 +287,35 @@ Future<void> setProfile() async {
               child: Material(
                 borderRadius: BorderRadius.circular(10),
                 elevation: 5.0,
-                child: Container(
-                  padding: EdgeInsets.all(15),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: Colors.white),
-                  child: Row(
-                    children: [
-                      Icon(
-                        Icons.delete,
-                        size: 28.0,
-                      ),
-                      SizedBox(
-                        width: 20,
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Delete Account',
-                            style: AppWidget.semiBoldText2Style(),
-                          ),
-                        ],
-                      )
-                    ],
+                child: GestureDetector(
+                  onTap: () {
+                    AuthMethods().deleteUser();
+                  },
+                  child: Container(
+                    padding: EdgeInsets.all(15),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Colors.white),
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.delete,
+                          size: 28.0,
+                        ),
+                        SizedBox(
+                          width: 20,
+                        ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Delete Account',
+                              style: AppWidget.semiBoldText2Style(),
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -323,8 +329,10 @@ Future<void> setProfile() async {
                 borderRadius: BorderRadius.circular(10),
                 elevation: 5.0,
                 child: GestureDetector(
-                  onTap: () {
-                    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) {
+                  onTap: () async{
+                    await AuthMethods().deleteUser();
+
+                    await Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) {
                       return const Login();
                     },));
                   },
